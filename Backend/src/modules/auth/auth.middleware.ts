@@ -16,8 +16,6 @@ export const authUser = async (
         if (!decodedToken)
             throw ApiError.unauthorized("Unauthorized! Retry again");
 
-        console.log("decoded ", decodedToken);
-
         const user = await User.findById(decodedToken.id);
         if (!user) {
             throw ApiError.notFound("Not Found! Retry Login");

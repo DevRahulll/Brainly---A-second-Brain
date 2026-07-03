@@ -2,8 +2,6 @@ services:
     mongodb:
         image: mongo
         container_name: brainly
-        restart: always
-
         ports:
             - "27017:27017"
 
