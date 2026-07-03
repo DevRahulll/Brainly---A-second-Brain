@@ -21,6 +21,9 @@ app.get("/health", (req, res) => {
 // auth
 app.use("/api/v1/users", userRouter);
 
+//content
+app.use("/api/v1/content");
+
 //catch-all for undefined routes
 // app.all("{*path}", (req, res) => {
 //     throw ApiError.notFound(`Route ${req.originalUrl} not found`);
