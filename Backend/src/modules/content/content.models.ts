@@ -6,14 +6,14 @@ const contentSchema = new Schema(
             type: String,
             required: [true, "Link is required"],
         },
+        title: {
+            type: String,
+            required: [true, "Content Title is required"],
+        },
         contentType: {
             type: String,
             enum: ["tweet", "youtube", "article", "document", "link"],
             required: [true, "Content Type is required"],
-        },
-        title: {
-            type: String,
-            required: [true, "Content Title is required"],
         },
         tag: {
             type: String,

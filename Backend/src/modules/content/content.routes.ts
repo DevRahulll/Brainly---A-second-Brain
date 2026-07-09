@@ -8,8 +8,8 @@ import { authUser } from "../auth/auth.middleware.js";
 
 const contentRouter = express.Router();
 
-contentRouter.get("/content", authUser, getAllContent);
-contentRouter.post("/content", authUser, createContent);
-contentRouter.delete("/content/:contentId", authUser, deleteSingleContent);
+contentRouter.get("/", authUser, getAllContent);
+contentRouter.post("/", authUser, createContent);
+contentRouter.delete("/:contentId", authUser, deleteSingleContent);
 
 export default contentRouter;

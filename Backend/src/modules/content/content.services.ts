@@ -30,24 +30,25 @@ const getAllContent = async (userId: string) => {
     }
 
     const allContent = await Content.find({ userId });
-    if (!allContent || allContent.length === 0)
-        throw ApiError.notFound("Not Content Found! Create one");
 
     return allContent;
 };
 
-const deleteSingleContent = async (contentId: string) => {
+const deleteSingleContent = async (contentId: string, userId: string) => {
     if (!contentId) {
-        throw ApiError.unauthorized("Unauthorized! Login Again");
+        throw ApiError.badRequest("Content ID is required");
     }
 
-    const isDeleted = await Content.findByIdAndDelete(contentId);
-    console.log("Dleted log", isDeleted);
-    if (!isDeleted) {
-        throw ApiError.notFound("Content Not found");
+    const content = await Content.findById(contentId);
+    if (!content) throw ApiError.notFound("Content not found");
+
+    if (content.userId.toString() !== userId) {
+        throw ApiError.forbidden("You don't have permission to delete this");
     }
 
-    return isDeleted;
+    await content.deleteOne();
+
+    return { deleted: true, contentId };
 };
 
 export { newContent, getAllContent, deleteSingleContent };

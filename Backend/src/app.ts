@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import userRouter from "./modules/auth/auth.routes.js";
+import contentRouter from "./modules/content/content.routes.js";
 import ApiError from "./common/utils/api-error.js";
 
 const app = express();
@@ -22,7 +23,7 @@ app.get("/health", (req, res) => {
 app.use("/api/v1/users", userRouter);
 
 //content
-app.use("/api/v1/content");
+app.use("/api/v1/content", contentRouter);
 
 //catch-all for undefined routes
 // app.all("{*path}", (req, res) => {
